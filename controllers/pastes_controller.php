@@ -43,9 +43,11 @@ class PastesController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->Paste->save($this->data)) {
+         // Disabling data validation with a save($data,false) for now.
+         // TODO: Must enable data validation for production. Thanx stefano :)
+			if ($this->Paste->save($this->data,false)) {
 				$this->Session->setFlash(sprintf(__('The %s has been saved', true), 'paste'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(sprintf(__('The %s could not be saved. Please, try again.', true), 'paste'));
 			}
