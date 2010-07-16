@@ -3,6 +3,13 @@ class PastesController extends AppController {
 
 	var $name = 'Pastes';
 
+   var $paginate = array(
+      'limit' => 5,
+      'order' => array(
+         'Paste.id' => 'desc'
+      )
+   );
+
 	function index() {
 		$this->Paste->recursive = 0;
 		$this->set('pastes', $this->paginate());
