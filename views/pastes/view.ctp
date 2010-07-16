@@ -1,27 +1,24 @@
 <div class="pastes view">
-<h2><?php  __('Paste');?></h2>
-	<dl><?php $i = 0; $class = ' class="altrow"';?>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Id'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $paste['Paste']['id']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Code'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<pre id='parseCode' class='<?php echo $paste['Paste']['parse']; ?>:git'><?php echo htmlentities($paste['Paste']['code']); ?></pre>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Created'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $paste['Paste']['created']; ?>
-			&nbsp;
-		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('Modified'); ?></dt>
-		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $paste['Paste']['modified']; ?>
-			&nbsp;
-		</dd>
-	</dl>
+<h2><?php  __('Paste');?> <? echo $paste['Paste']['id'] ?></h2>
+	<table cellpadding="0" cellspacing="0">
+	<tr>
+			<th><?php echo ('code');?></th>
+	</tr>
+	<tr>
+      <td><pre id='parseCode' class='<?php echo $paste['Paste']['parse']; ?>:git'><?php echo htmlentities($paste['Paste']['code']); ?></pre></td>
+	</tr>
+	<tr>
+		<td><?php __('Parser Engine:');?><?php echo $paste['Paste']['parse']; ?>&nbsp;<br />
+		<?php __('Entry Created:');?><?php echo $paste['Paste']['created']; ?>&nbsp;<br />
+		<?php __('Entry Modified:');?><?php echo $paste['Paste']['modified']; ?>&nbsp;</td>
+	</tr>
+		<td class="actions">
+			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $paste['Paste']['id'])); ?>
+			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $paste['Paste']['id'])); ?>
+			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $paste['Paste']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $paste['Paste']['id'])); ?>
+		</td>
+	</tr>
+	</table>
 </div>
 <div class="actions">
 	<h3><?php __('Actions'); ?></h3>
