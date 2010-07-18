@@ -16,16 +16,35 @@ class PastesController extends AppController {
 	}
 
 	function view($id = null) {
+      if ($this->data) {
+         $id = $id ? $id : $this->data['Paste']['id'];
+      }
+
 		if (!$id) {
 			$this->Session->setFlash(sprintf(__('Invalid %s', true), 'paste'));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('paste', $this->Paste->read(null, $id));
+
+      $error=0;
+		$paste=$this->Paste->read(null, $id);
+
+      if ($paste['Paste']['protect'] && !isset($this->data['Paste'])) {
+         $this->Session->setFlash('Protected! What\'s the magic word?');
+         $error=401;
+      } elseif ($paste['Paste']['protect'] != md5($this->data['Paste']['protect'])) {
+         $this->Session->setFlash('Bad Password. Try again?');
+         $error=401;
+      } 
+
+		$this->set('paste', $paste);
+      $this->set('error', $error);
+
 	}
 
 	function add() {
       $this->set('parseArray', $this->Paste->getParseValues());
 		if (!empty($this->data)) {
+         $this->data['Paste']['protect'] = md5($this->data['Paste']['protect']);
 			$this->Paste->create();
 			if ($this->Paste->save($this->data)) {
 				$this->Session->setFlash(sprintf(__('The %s has been saved', true), 'paste'));

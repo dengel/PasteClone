@@ -5,7 +5,8 @@
 	<?php
 		echo $this->Form->input('id');
 		echo $this->Form->input('code');
-      echo $this->Form->input('parse',array('options' => $parseArray, 'empty' => '(choose one)'));
+		echo $this->Form->input('parse',array('options' => $parseArray, 'empty' => '(choose one)'));
+		echo $this->Form->input('Paste.protect',  array('type' => 'password'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
