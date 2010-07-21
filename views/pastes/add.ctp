@@ -6,6 +6,8 @@
 		echo $this->Form->input('code');
 		echo $this->Form->input('parse',array('options' => $parseArray, 'empty' => '(choose one)'));
 		echo $this->Form->input('Paste.protect',  array('type' => 'password'));
+		echo $this->Form->input('email');
+		echo $this->Form->input('gravatar');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

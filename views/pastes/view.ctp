@@ -1,6 +1,5 @@
 <?php if ($error): ?>
 <?php
-
    if ($error == 401) {
       echo $form->create('Paste', array('url' => 'view'));
       echo $form->input('id', array('value' => $paste['Paste']['id'], 'type' => 'hidden'));
@@ -15,23 +14,45 @@
    }
 
 ?>
-<?php else: ?>
+<?php else:
+   function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+       $url = 'http://www.gravatar.com/avatar/';
+       $url .= md5( strtolower( trim( $email ) ) );
+       $url .= "?s=$s&d=$d&r=$r";
+       if ($img) {
+	   $url = '<img src="' . $url . '"';
+	   foreach ( $atts as $key => $val )
+	       $url .= ' ' . $key . '="' . $val . '"';
+	   $url .= ' />';
+       }
+       return $url;
+   }
+?>
 <div class="pastes view">
 <h2><?php  __('Paste');?> <? echo $paste['Paste']['id'] ?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo ('code');?></th>
+			<th colspan="2"><?php echo ('code');?></th>
 	</tr>
 	<tr>
-      <td><pre id='parseCode' class='<?php echo $paste['Paste']['parse']; ?>:git'><?php echo htmlentities($paste['Paste']['code']); ?></pre></td>
+      <td  colspan="2"><pre id='parseCode' class='<?php echo $paste['Paste']['parse']; ?>:git'><?php echo htmlentities($paste['Paste']['code']); ?></pre></td>
 	</tr>
 	<tr>
+	       <td>
+		  <?php
+		  if (!empty($paste['Paste']['email']) && $paste['Paste']['gravatar']){
+		     echo "<img src=\"".get_gravatar($paste['Paste']['email'])."\" alt=\"Gravatar\" >";
+		  }
+		  
+		  
+		  ?>
+	       </td>	
 		<td><?php __('Parser Engine:');?><?php echo $paste['Paste']['parse']; ?>&nbsp;<br />
 		<?php __('Entry Created:');?><?php echo $paste['Paste']['created']; ?>&nbsp;<br />
 		<?php __('Entry Modified:');?><?php echo $paste['Paste']['modified']; ?>&nbsp;
 		<?php if ($paste['Paste']['protect']) __('Entry Protected'); ?>&nbsp;</td>
 	</tr>
-		<td class="actions">
+		<td class="actions"  colspan="2">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $paste['Paste']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $paste['Paste']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $paste['Paste']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $paste['Paste']['id'])); ?>
