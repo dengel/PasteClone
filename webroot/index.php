@@ -50,7 +50,7 @@
  *
  */
 	if (!defined('CAKE_CORE_INCLUDE_PATH')) {
-		define('CAKE_CORE_INCLUDE_PATH',  DS . 'home' . DS . 'httpd' . DS . 'virtual' . DS . 'zero.dengel.me' . DS . 'paste');
+		define('CAKE_CORE_INCLUDE_PATH', ROOT);
 	}
 
 /**

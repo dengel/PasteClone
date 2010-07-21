@@ -1,3 +1,4 @@
 config/database.php
 cake/*
 tmp/*
+webroot/index.php
