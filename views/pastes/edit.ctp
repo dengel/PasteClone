@@ -8,7 +8,7 @@
 		echo $this->Form->input('parse',array('options' => $parseArray, 'empty' => '(choose one)'));
 		echo $this->Form->input('Paste.protect',  array('type' => 'password'));
 		// Editing email address, not needed?
-		// echo $this->Form->input('email');
+		echo $this->Form->input('email');
 		echo $this->Form->input('gravatar');
 	?>
 	</fieldset>
