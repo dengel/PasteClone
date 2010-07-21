@@ -14,20 +14,7 @@
    }
 
 ?>
-<?php else:
-   function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
-       $url = 'http://www.gravatar.com/avatar/';
-       $url .= md5( strtolower( trim( $email ) ) );
-       $url .= "?s=$s&d=$d&r=$r";
-       if ($img) {
-	   $url = '<img src="' . $url . '"';
-	   foreach ( $atts as $key => $val )
-	       $url .= ' ' . $key . '="' . $val . '"';
-	   $url .= ' />';
-       }
-       return $url;
-   }
-?>
+<?php else: ?>
 <div class="pastes view">
 <h2><?php  __('Paste');?> <? echo $paste['Paste']['id'] ?></h2>
 	<table cellpadding="0" cellspacing="0">
@@ -38,14 +25,8 @@
       <td  colspan="2"><pre id='parseCode' class='<?php echo $paste['Paste']['parse']; ?>:git'><?php echo htmlentities($paste['Paste']['code']); ?></pre></td>
 	</tr>
 	<tr>
-	       <td>
-		  <?php
-		  if (!empty($paste['Paste']['email']) && $paste['Paste']['gravatar']){
-		     echo "<img src=\"".get_gravatar($paste['Paste']['email'])."\" alt=\"Gravatar\" >";
-		  }
-		  
-		  
-		  ?>
+	       <td width="1">
+		  <?php echo $gravatar ?>
 	       </td>	
 		<td><?php __('Parser Engine:');?><?php echo $paste['Paste']['parse']; ?>&nbsp;<br />
 		<?php __('Entry Created:');?><?php echo $paste['Paste']['created']; ?>&nbsp;<br />
@@ -59,7 +40,7 @@
 		</td>
 	</tr>
 	<tr>
-      <td><?php echo $this->element('social'); ?></td>
+      <td colspan='2'><?php echo $this->element('social'); ?></td>
    </tr>
 	</table>
 </div>

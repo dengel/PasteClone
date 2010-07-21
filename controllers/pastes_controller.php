@@ -26,6 +26,7 @@ class PastesController extends AppController {
 		}
 
       $error=0;
+      $gravatar="";
 		$paste=$this->Paste->read(null, $id);
 
       if ($paste['Paste']['protect'] && !isset($this->data['Paste'])) {
@@ -37,10 +38,15 @@ class PastesController extends AppController {
          $error=401;
       } 
 
+      if (!empty($paste['Paste']['email']) && $paste['Paste']['gravatar']){
+         $gravatar="<img src=\"".$this->getGravatar($paste['Paste']['email'])."\" alt=\"Gravatar\">";
+      }
+
+      # These are the return values for the View.
 		$this->set('paste', $paste);
       $this->set('error', $error);
-      $test=$this->getUrl();
-      $this->set('thisurl', $test);
+      $this->set('gravatar', $gravatar);
+      $this->set('thisurl', $this->getUrl());
 
 	}
 
