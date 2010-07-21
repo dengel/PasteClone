@@ -37,6 +37,9 @@
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $paste['Paste']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $paste['Paste']['id'])); ?>
 		</td>
 	</tr>
+	<tr>
+      <td><?php echo $this->element('social'); ?></td>
+   </tr>
 	</table>
 </div>
 <div class="actions">

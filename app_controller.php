@@ -31,5 +31,8 @@
  * @subpackage    cake.app
  */
 class AppController extends Controller {
+   function getUrl() {
+      return 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+   }
 }
 ?>

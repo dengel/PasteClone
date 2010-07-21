@@ -38,6 +38,8 @@ class PastesController extends AppController {
 
 		$this->set('paste', $paste);
       $this->set('error', $error);
+      $test=$this->getUrl();
+      $this->set('thisurl', $test);
 
 	}
 
@@ -88,5 +90,6 @@ class PastesController extends AppController {
 		$this->Session->setFlash(sprintf(__('%s was not deleted', true), 'Paste'));
 		$this->redirect(array('action' => 'index'));
 	}
+
 }
 ?>
