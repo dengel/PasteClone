@@ -45,6 +45,9 @@ class PastesController extends AppController {
         } elseif (($paste['Paste']['protect']) && ($paste['Paste']['protect'] != md5($this->data['Paste']['protect']))) {
             $this->Session->setFlash('Bad Password. Try again?');
             $error = 401;
+        } elseif ($paste['Paste']['destruct'] && $paste['Paste']['hits']) {
+            $this->Session->setFlash('Expired! This murl has self-destructed');
+            $error = 410;
         }
 
         if (!empty($paste['Paste']['email']) && $paste['Paste']['gravatar']) {
@@ -61,6 +64,9 @@ class PastesController extends AppController {
     function add() {
         $this->set('parseArray', $this->Paste->getParseValues());
         if (!empty($this->data)) {
+            $this->data['Paste']['remote']  = $this->RequestHandler->getClientIP();
+            $this->data['Paste']['referer'] = $this->RequestHandler->getReferer();
+            $this->data['Paste']['agent']   = $_SERVER['HTTP_USER_AGENT'];
             if (!empty($this->data['Paste']['protect'])) {
                 $this->data['Paste']['protect'] = md5($this->data['Paste']['protect']);
             } else {

@@ -10,6 +10,7 @@
 		// Editing email address, not needed?
 		echo $this->Form->input('email');
 		echo $this->Form->input('gravatar');
+		echo $this->Form->input('destruct');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

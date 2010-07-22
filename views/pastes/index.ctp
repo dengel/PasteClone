@@ -2,12 +2,11 @@
 	<h2><?php __('Pastes');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('code');?></th>
-			<th><?php echo $this->Paginator->sort('parse');?></th>
-			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
-			<th class="actions"><?php __('Actions');?></th>
+			<th nowrap><?php echo $this->Paginator->sort('id');?></th>
+			<th nowrap><?php echo $this->Paginator->sort('code');?></th>
+			<th nowrap><?php echo $this->Paginator->sort('parse');?></th>
+			<th nowrap><?php echo $this->Paginator->sort('created');?></th>
+			<th nowrap class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
 	$i = 0;
@@ -21,8 +20,12 @@
 		<td><?php echo $paste['Paste']['id']; ?>&nbsp;</td>
 		<td><?php echo $paste['Paste']['parse']; ?>&nbsp;</td>
       <td><pre id='parseCode' class='<?php echo $paste['Paste']['parse']; ?>:git'><?php echo htmlentities($paste['Paste']['code']); ?></pre></td>
-		<td><?php echo $paste['Paste']['created']; ?>&nbsp;</td>
-		<td><?php echo $paste['Paste']['modified']; ?>&nbsp;</td>
+		<td nowrap><?php echo $paste['Paste']['created']; ?>
+			   <?php if ($paste['Paste']['created'] != $paste['Paste']['modified']) echo '<br /><i>'.$paste['Paste']['modified'].'</i>';?>
+			   <?php if ($paste['Paste']['protect']) echo '<br /><b>Protected</b>';?>
+			   <?php if ($paste['Paste']['destruct'] && ($paste['Paste']['destruct'] < 1)) echo '<br /><b>Destruct</b>';?>
+			   <?php if ($paste['Paste']['destruct'] && ($paste['Paste']['destruct'] > 0)) echo '<br /><b>Destructed</b>';?>
+                           &nbsp;</td>
 		<td class="actions">
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $paste['Paste']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $paste['Paste']['id'])); ?>

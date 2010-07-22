@@ -8,6 +8,7 @@
 		echo $this->Form->input('Paste.protect',  array('type' => 'password'));
 		echo $this->Form->input('email');
 		echo $this->Form->input('gravatar');
+		echo $this->Form->input('destruct');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>
