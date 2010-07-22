@@ -53,6 +53,9 @@ class PastesController extends AppController {
         if (!empty($paste['Paste']['email']) && $paste['Paste']['gravatar']) {
             $gravatar = "<img src=\"" . $this->getGravatar($paste['Paste']['email']) . "\" alt=\"Gravatar\">";
         }
+        else{
+            $gravatar = "<img src=\"http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm\" alt=\"Gravatar\">";
+        }
 
         # These are the return values for the View.
         $this->set('paste', $paste);
