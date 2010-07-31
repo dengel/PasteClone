@@ -119,5 +119,55 @@ class PastesController extends AppController {
         $this->redirect(array('action' => 'index'));
     }
 
+    function ezprint($id = null) {
+        $this->layout = "ezprint";
+
+        if ($this->data) {
+            $id = $id ? $id : $this->data['Paste']['id'];
+        }
+
+        if (!$id) {
+            $this->Session->setFlash(sprintf(__('Invalid %s', true), 'paste'));
+            $this->redirect(array('action' => 'index'));
+        }
+
+        $error = 0;
+        $gravatar = "";
+        $paste = $this->Paste->read(null, $id);
+
+        /* Add hits */
+        $this->Paste->updateAll(array('Paste.hits' => 'Paste.hits+1'), array('Paste.id' => $paste['Paste']['id']));
+        $this->data['Hit']['paste_id'] = $paste['Paste']['id'];
+        $this->data['Hit']['remote'] = $this->RequestHandler->getClientIP();
+        $this->data['Hit']['referer'] = $this->RequestHandler->getReferer();
+        $this->data['Hit']['agent'] = $_SERVER['HTTP_USER_AGENT'];
+        $this->Paste->Hit->save($this->data);
+
+
+
+        if ($paste['Paste']['protect'] && !isset($this->data['Paste'])) {
+            $this->Session->setFlash('Protected! What\'s the magic word?');
+            $error = 401;
+        } elseif (($paste['Paste']['protect']) && ($paste['Paste']['protect'] != md5($this->data['Paste']['protect']))) {
+            $this->Session->setFlash('Bad Password. Try again?');
+            $error = 401;
+        } elseif ($paste['Paste']['destruct'] && $paste['Paste']['hits']) {
+            $this->Session->setFlash('Expired! This murl has self-destructed');
+            $error = 410;
+        }
+
+        if (!empty($paste['Paste']['email']) && $paste['Paste']['gravatar']) {
+            $gravatar = "<img src=\"" . $this->getGravatar($paste['Paste']['email']) . "\" alt=\"Gravatar\">";
+        }
+        else{
+            $gravatar = "<img src=\"http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm\" alt=\"Gravatar\">";
+        }
+
+        # These are the return values for the View.
+        $this->set('paste', $paste);
+        $this->set('error', $error);
+        $this->set('gravatar', $gravatar);
+        $this->set('thisurl', $this->getUrl());
+    }
 }
 ?>

@@ -28,8 +28,7 @@ if ($error == 401) {
       <td colspan='2'><?php echo $this->element('social'); ?></td>
    </tr>
    <tr>
-      <td colspan="1"></td>
-      <td colspan="1">
+      <td colspan="2">
       <span class="small">
       <?php __('Hits:');?> <?php echo $paste['Paste']['hits']; ?><br />
       <?php __('Remote:');?> <?php echo $paste['Paste']['remote']; ?><br />
@@ -52,6 +51,7 @@ if ($error == 401) {
          <?php echo $this->Html->link(__('View', true), array('action' => 'view', $paste['Paste']['id'])); ?>
          <?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $paste['Paste']['id'])); ?>
          <?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $paste['Paste']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $paste['Paste']['id'])); ?>
+         <?php echo $this->Html->link(__('Print', true), array('action' => 'ezprint', $paste['Paste']['id'])); ?>
       </td>
    </tr>
    </table>
