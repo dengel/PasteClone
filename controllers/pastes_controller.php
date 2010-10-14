@@ -10,6 +10,16 @@ class PastesController extends AppController {
         )
     );
 
+    function beforeRender() {
+        $this->layout = "pasteclone";
+        //$this->set('app_domain',  $this->Murl->getAppDomain());
+        //$this->set('app_slogan',  $this->Murl->getAppSlogan());
+        //$this->set('app_version', $this->Murl->getAppVersion());
+        $this->set('app_domain',  'dengel.me');
+        $this->set('app_slogan',  'Simple Paste Clone. Just Because.');
+        $this->set('app_version', '1.0');
+    }
+
     function index() {
         $this->Paste->recursive = 0;
         $this->set('pastes', $this->paginate());

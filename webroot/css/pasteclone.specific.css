@@ -1,0 +1,222 @@
+.small {
+   font-size: 10px;
+}
+.big {
+   font-size: 16px;
+}
+.result {
+   margin-left: auto;
+   margin-right: auto;
+   width: 250px;
+   text-align: center;
+   font-size:130%;
+   padding: 20px;
+   background:#62af56;
+   background: -webkit-gradient(linear, left top, left bottom, from(#a8ea9c), to(#62af56));
+   background-image: -moz-linear-gradient(top, #a8ea9c, #62af56);
+   border-color: #2d6324;
+   color: #000;
+   text-shadow: #8cee7c 0px 1px 0px;
+}
+a.result_text {
+	color: #203d6c;
+	text-decoration: none;
+	font-weight: bold;
+}
+a.result_text:hover {
+	color: #367889;
+	text-decoration:none;
+}
+.toright {
+   float: right;
+}
+.tocenter {
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+}
+a.beta {
+	color: #CCC;
+	text-decoration: none;
+	font-weight: bold;
+}
+a.beta:hover {
+	color: #CCF;
+	text-decoration:none;
+}
+
+/* Table Style */
+table.mstyle {
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+table.mstyle th {
+    text-align: left;
+    font-weight: normal;
+    padding: 0.1em 0.5em;
+    border-bottom: 2px solid #FFFFFF;
+    background: #DBE2F1;
+}
+table.mstyle td {
+    text-align: left;
+    border-bottom: 2px solid #FFFFFF;
+    padding: 0.1em 0.5em;
+    background: #DBE2F1;
+}
+
+table.mstyle thead th {
+    background: #687EAB;
+    color: #FFFFFF;
+    text-align: center;
+}
+table.mstyle th.Corner {
+    text-align: left;
+}
+table.mstyle tr:nth-child(odd) {
+  background-color: #CACACA;
+}
+.nobreak {
+  white-space: nowrap;
+}
+
+.social {
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+   padding: 0.5em 0.5em;
+}
+
+.mtext {
+   background: none repeat scroll 0% 0% rgb(255, 255, 255); 
+   border-width: 1px; 
+   border-style: solid; 
+   border-color: rgb(204, 204, 204) rgb(153, 153, 153) rgb(153, 153, 153) rgb(204, 204, 204); 
+   color: rgb(0, 0, 0); 
+   font: 18px arial,sans-serif bold; 
+   height: 25px; 
+   margin: 0pt; 
+   padding: 5px 8px 0pt 6px; 
+   vertical-align: top;
+   width: 98%;
+}
+
+label {
+	display: block;
+	font-size: 110%;
+	margin-bottom:1px;
+}
+
+p.menu {
+   float: right;
+   white-space: nowrap;
+   font-size: 10px;
+	display: block;
+	margin-bottom:1px;
+}
+
+p.mtitle {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+   text-align: center;
+   white-space: nowrap;
+   margin-top:5px;
+   margin-bottom:5px;
+   font-family: 'Inconsolata', serif;
+   font-size: 48px;
+   font-style: normal;
+   font-weight: 700;
+   text-decoration: none;
+   text-transform: none;
+   word-spacing: 0em;
+   line-height: 1em;
+}
+
+input[type=submit] {
+	font-family: 'Inconsolata', serif;
+	font-weight:normal;
+	padding: 6px 10px;
+	margin-left: auto;
+	margin-right: auto;
+	color:#000;
+	border-color: #2d6324;
+	border:1px solid;
+	border-radius:8px;
+	text-decoration:none;
+	min-width: 0;
+	display: inline;
+	font-size: 200%;
+	width: auto;
+}
+input[type=submit]:hover {
+	color:#fff;
+	background: #08d;
+}
+input[type=checkbox] {
+	clear: left;
+	float: left;
+	margin: 0px 6px 7px 2px;
+	width: auto;
+}
+input[type=radio] {
+	float:left;
+	width:auto;
+	margin: 0 3px 7px 0;
+}
+input, textarea {
+	clear: both;
+	font-size: 140%;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	padding: 0.5%;
+	width:98%;
+}
+select {
+	clear: both;
+	font-size: 120%;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	vertical-align: text-bottom;
+	padding: 0.5%;
+	width: 99%;
+}
+.message {
+	font-family: 'Inconsolata', serif;
+	font-size: 12px;
+	background:#e5ecf9;
+	color:#111f8a;
+	border-color:#c2c4fb;
+}
+
+.success {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   text-align: center;
+   text-align: center;
+   white-space: nowrap;
+   margin-bottom:10px;
+   font-family: 'Inconsolata', serif;
+   font-size: 48px;
+   font-style: normal;
+   font-weight: 700;
+   text-decoration: none;
+   text-transform: none;
+   word-spacing: 0em;
+   line-height: 1em;
+}
+div.error-message {
+	padding: 6px 10px;
+	clear: both;
+	color: #8a1f11;
+	font-weight: bold;
+	background: #fbc2c4;
+}
+.nobr {white-space: nowrap}
+
+.pastebox {
+	clear: both;
+	font-size: 140%;
+	font-family: serif;
+	padding: 1%;
+	width:98%;
+}
