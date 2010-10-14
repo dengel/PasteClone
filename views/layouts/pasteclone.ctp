@@ -54,7 +54,7 @@
                 array('target' => '_blank', 'escape' => false)
                 );
 
-		echo "<br /><small><a href='#' id='beta_link' class='beta'>Version: 0.5 Development.</a></small>";
+		echo "<br /><small><a href='#' id='beta_link' class='beta'>Version: 0.6 Development.</a></small>";
 			echo "<div id='beta_div'>";
 			echo $this->element('sql_dump');
 			pr($this->params);
