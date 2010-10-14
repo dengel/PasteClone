@@ -16,7 +16,7 @@ class PastesController extends AppController {
         //$this->set('app_slogan',  $this->Murl->getAppSlogan());
         //$this->set('app_version', $this->Murl->getAppVersion());
         $this->set('app_domain',  'dengel.me');
-        $this->set('app_slogan',  'Simple Paste Clone. Just Because.');
+        $this->set('app_slogan',  'Simple Secure Paste Clone');
         $this->set('app_version', '1.0');
     }
 
@@ -56,7 +56,7 @@ class PastesController extends AppController {
             $this->Session->setFlash('Bad Password. Try again?');
             $error = 401;
         } elseif ($paste['Paste']['destruct'] && $paste['Paste']['hits']) {
-            $this->Session->setFlash('Expired! This murl has self-destructed');
+            $this->Session->setFlash('Expired! This paste has self-destructed');
             $error = 410;
         }
 
@@ -162,7 +162,7 @@ class PastesController extends AppController {
             $this->Session->setFlash('Bad Password. Try again?');
             $error = 401;
         } elseif ($paste['Paste']['destruct'] && $paste['Paste']['hits']) {
-            $this->Session->setFlash('Expired! This murl has self-destructed');
+            $this->Session->setFlash('Expired! This paste has self-destructed');
             $error = 410;
         }
 
@@ -179,5 +179,25 @@ class PastesController extends AppController {
         $this->set('gravatar', $gravatar);
         $this->set('thisurl', $this->getUrl());
     }
+
+    function top() {
+        $this->set('title_for_layout', "Top Paste");
+        $this->Murl->recursive = 0;
+        $this->set('pastes', $this->Paste->find('all', array(
+                    'limit' => 20,
+                    'order' => array('Paste.hits DESC'),
+                )));
+    }
+
+    function random() {
+        $this->set('title_for_layout', "Random Paste");
+        $this->Murl->recursive = 0;
+        $this->set('pastes', $this->Paste->find('all', array(
+                    'limit' => 1,
+                    'order' => array('rand()'),
+                )));
+    }
+
+
 }
 ?>
